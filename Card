@@ -1,0 +1,12 @@
+package peterson;
+
+public class Card {
+
+	int digit, suit;
+
+	Card(int d, int s) {
+
+		this.digit = d;
+		this.suit = s;
+	}
+}
