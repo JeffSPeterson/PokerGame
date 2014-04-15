@@ -1,0 +1,55 @@
+
+
+if (checkhand(hand1) > checkHand(hand2))
+  playerOneWins++;
+else
+  playerTwoWins++;
+  
+  
+
+int checkHand(card[] hand){
+  return max(checkPair(hand), highCard(hand) + flush(hand) + straight(hand));
+}
+int checkPair(card[] hand) {
+  for(int i = 0; i<hand.length(); i++)
+    for(int j=i; j<hand.length(); j++)
+      if (hand[i].digit==hand[j].digit)
+        return(checkThree(hand[i].digit, OTHER THREE CARDS)
+  return (0);
+}
+int checkThree(int pair, int card1, int card2, int card3){
+  switch(pair){
+    case card1 : return CheckFour(pair, card2, card3);
+    case card2 : return CheckFour(pair, card1, card3);
+    case card3 : return CheckFour(pair, card1, card2);
+    default : return CheckTwoPair(pair, card1, card2, card3);
+  }
+}
+int checkFour(int triple, int card1, int card2){
+  if(triple==card1 || triple==card2)
+    return (700 + triple)
+  else 
+    return fullHouse1(triple, card1, card2)
+}
+int checkTwoPair(int pair, int card1, int card2, int card3){
+  if(card1==card2)
+    return fullHouse2(pair, card1, card3);
+  else if(card1==card3)
+    return fullHouse2(pair, card1, card2);
+  else if(card2==card3)
+    return fullHouse2(pair, card2, card3);
+  else 
+    return (100 + pair);
+}
+int fullHouse1(int triple, int card1, int card2){
+  if(card1==card2)
+    return(600 + triple);
+  else
+    return(300 + triple);
+}
+int fullHouse2(int pair1, int pair2, card){
+  if(pair1==card || pair2==card)
+    return(600+card);
+  else
+    return(200 + max(pair1, pair2);
+}
