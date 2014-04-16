@@ -27,7 +27,8 @@ public class CheckHand {
 		Arrays.sort(values);
 		highCard = values[NUMBER_OF_CARDS - 1];
 		if (values[0] + 1 == values[1] && values[1] + 1 == values[2]
-				&& values[2] + 1 == values[3] && values[3] + 1 == values[4])
+				&& values[2] + 1 == values[3] && 
+				(values[3] + 1 == values[4] || values[3] + 9 == values[4]))
 			return highCard + STRAIGHT;
 		else
 			return highCard;
