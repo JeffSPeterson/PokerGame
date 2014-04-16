@@ -14,13 +14,13 @@ public class CheckHand {
 
 
 	// TAKES HAND AND RECURSIVELY CHECKS TYPE OF HANDS
-	// RETURN NUMBER
+	// RETURNS A UNIQUE NUMBER CORESPONDING TO THE VALUE
 	public int checkHand(Card[] hand) {
-		return Math.max(checkPair(hand), highCard(hand) + flush(hand)
-				+ straight(hand));
+		return Math.max(checkPair(hand), 
+				highCard(hand) + flush(hand) + straight(hand));
 	}
 
-	// CHECKS FOR A PAIR
+	// FINDS HIGH CARD
 	int highCard(Card[] hand) {
 		return Math.max(
 				hand[0].digit,
@@ -28,6 +28,7 @@ public class CheckHand {
 						Math.max(hand[3].digit, hand[4].digit)));
 	}
 
+	// CHECKS FOR FLUSH
 	int flush(Card[] hand) {
 		if (hand[0].suit == hand[1].suit && hand[1].suit == hand[2].suit
 				&& hand[2].suit == hand[3].suit && hand[3].suit == hand[4].suit)
@@ -36,6 +37,7 @@ public class CheckHand {
 			return 0;
 	}
 
+	// CHECKS FOR STRAIGHT
 	int straight(Card[] hand) {
 		int[] values = new int[5];
 		for (int i = 0; i < 5; i++)
@@ -48,6 +50,7 @@ public class CheckHand {
 			return 0;
 	}
 
+	// CHECKS FOR PAIR
 	public int checkPair(Card[] hand) {
 		if (hand[0].digit == hand[1].digit)
 			return checkThree(hand[0].digit, hand[2].digit, hand[3].digit,
@@ -83,7 +86,7 @@ public class CheckHand {
 			return (0);
 	}
 
-	// CHECKS IF THERE ARE 3 OF A KIND
+	// CHECKS IF A FOUND PAIR HAS THREE OF A KIND
 	public int checkThree(int pair, int card1, int card2, int card3) {
 		if (pair == card1)
 			return checkFour(pair, card2, card3);
@@ -95,7 +98,7 @@ public class CheckHand {
 			return checkTwoPair(pair, card1, card2, card3);
 	}
 
-	// CHECKS IF THERE ARE FOUR OF A KIND
+	// CHECKS IF A FOUND THREE OF A KIND HAS FOUR OF A KIND
 	public int checkFour(int triple, int card1, int card2) {
 		if (triple == card1 || triple == card2)
 			return (FOURKIND + triple);
@@ -103,7 +106,7 @@ public class CheckHand {
 			return fullHouse1(triple, card1, card2);
 	}
 
-	// CHECKS IF THERE ARE TWO PAIR
+	// CHECKS IF THERE IS A SECOND PAIR
 	public int checkTwoPair(int pair, int card1, int card2, int card3) {
 		if (card1 == card2)
 			return fullHouse2(pair, card1, card3);
@@ -115,7 +118,7 @@ public class CheckHand {
 			return (PAIR + pair);
 	}
 
-	// CHECKS FOR FULL HOUSE
+	// CHECKS IF A FOUND THREE OF A KIND IS A FULL HOUSE
 	public int fullHouse1(int triple, int card1, int card2) {
 		if (card1 == card2)
 			return (FULLHOUSE + triple);
@@ -123,7 +126,7 @@ public class CheckHand {
 			return (THREEKIND + triple);
 	}
 
-	// CHECKS FOR OTHER TYPE OF FULL HOUSE
+	// CHECKS IF A FOUND TWO PAIRS IS A FULL HOUSE
 	public int fullHouse2(int pair1, int pair2, int card) {
 		if (pair1 == card || pair2 == card)
 			return (FULLHOUSE + card);
