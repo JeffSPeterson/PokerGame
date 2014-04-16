@@ -11,41 +11,33 @@ public class CheckHand {
 	public final static int FLUSH = 500;
 	public final static int FULLHOUSE = 600;
 	public final static int FOURKIND = 700;
-
+	public final static int NUMBER_OF_CARDS = 5;
 
 	// TAKES HAND AND RECURSIVELY CHECKS TYPE OF HANDS
 	// RETURNS A UNIQUE NUMBER CORESPONDING TO THE VALUE
 	public int checkHand(Card[] hand) {
-		return Math.max(checkPair(hand), 
-				highCard(hand) + flush(hand) + straight(hand));
+		return Math.max(checkPair(hand), highCardandStraight(hand) + flush(hand));
 	}
 
-	// FINDS HIGH CARD
-	int highCard(Card[] hand) {
-		return Math.max(
-				hand[0].digit,
-				Math.max(Math.max(hand[1].digit, hand[2].digit),
-						Math.max(hand[3].digit, hand[4].digit)));
-	}
-
-	// CHECKS FOR FLUSH
-	int flush(Card[] hand) {
-		if (hand[0].suit == hand[1].suit && hand[1].suit == hand[2].suit
-				&& hand[2].suit == hand[3].suit && hand[3].suit == hand[4].suit)
-			return FLUSH;
-		else
-			return 0;
-	}
-
-	// CHECKS FOR STRAIGHT
-	int straight(Card[] hand) {
-		int[] values = new int[5];
-		for (int i = 0; i < 5; i++)
+	// CHECKS FOR THE HIGH CARD AND IF THE HAND IS A STRAIGHT
+	int highCardAndStraight(Card[] hand) {
+		int[] values = new int[NUMBER_OF_CARDS];
+		for (int i = 0; i < NUMBER_OF_CARDS; i++)
 			values[i] = hand[i].digit;
 		Arrays.sort(values);
+		highCard = values[NUMBER_OF_CARDS - 1];
 		if (values[0] + 1 == values[1] && values[1] + 1 == values[2]
 				&& values[2] + 1 == values[3] && values[3] + 1 == values[4])
-			return STRAIGHT;
+			return highCard + STRAIGHT;
+		else
+			return highCard;
+	}
+
+	// CHECKS IF THE HAND IS A FLUSH
+	int flush(Card[] hand) {
+		if (hand[0].suit + hand[1].suit + hand[2].suit + hand[3].suit + hand[4].suit
+				== hand[0].suit * NUMBER_OF_CARDS)
+			return FLUSH;
 		else
 			return 0;
 	}
