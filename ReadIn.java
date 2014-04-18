@@ -6,15 +6,15 @@ import java.util.Scanner;
 
 public class ReadIn {
 
-	public final static int TEN = 10;
-	public final static int JACK = 11;
-	public final static int QUEEN = 12;
-	public final static int KING = 13;
-	public final static int ACE = 14;
-	public final static int SPADE = 20;
-	public final static int HEART = 21;
-	public final static int DIAMOND = 22;
-	public final static int CLUB = 23;
+	public final static int TEN 	= 10;
+	public final static int JACK 	= 11;
+	public final static int QUEEN 	= 12;
+	public final static int KING 	= 13;
+	public final static int ACE 	= 14;
+	public final static int SPADE 	= 1;
+	public final static int HEART 	= 10;
+	public final static int DIAMOND	= 100;
+	public final static int CLUB 	= 1000;
 
 	Scanner scan = new Scanner(new File("hands.txt"));
 	String str;
