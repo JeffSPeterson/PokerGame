@@ -20,12 +20,12 @@ public class CheckHand {
 	}
 
 	// CHECKS FOR THE HIGH CARD AND IF THE HAND IS A STRAIGHT
-	int highCardAndStraight(Card[] hand) {
+	public int highCardAndStraight(Card[] hand) {
 		int[] values = new int[NUMBER_OF_CARDS];
 		for (int i = 0; i < NUMBER_OF_CARDS; i++)
 			values[i] = hand[i].digit;
 		Arrays.sort(values);
-		highCard = values[NUMBER_OF_CARDS - 1];
+		int highCard = values[NUMBER_OF_CARDS - 1];
 		if (values[0] + 1 == values[1] && values[1] + 1 == values[2]
 				&& values[2] + 1 == values[3] && 
 				(values[3] + 1 == values[4] || values[3] + 9 == values[4]))
@@ -35,7 +35,7 @@ public class CheckHand {
 	}
 
 	// CHECKS IF THE HAND IS A FLUSH
-	int flush(Card[] hand) {
+	public int flush(Card[] hand) {
 		if (hand[0].suit + hand[1].suit + hand[2].suit + hand[3].suit + hand[4].suit
 				== hand[0].suit * NUMBER_OF_CARDS)
 			return FLUSH;
